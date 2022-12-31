@@ -1,0 +1,21 @@
+package login;
+
+import java.awt.Window;
+
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+
+public class Modal extends JDialog {
+		// 스윙과 연결
+	public Modal (Window parent) {
+		super(parent, "Modal Practice", ModalityType.APPLICATION_MODAL);
+		
+		setSize (400,600);
+		setLayout (null);
+		setLocationRelativeTo(null);
+		
+		JLabel lb = new JLabel("Enter Text");
+		setBounds(100,60,100,50);
+		add(lb);
+	}
+}

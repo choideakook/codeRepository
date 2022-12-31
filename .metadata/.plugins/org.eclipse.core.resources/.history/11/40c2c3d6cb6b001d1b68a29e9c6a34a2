@@ -1,0 +1,26 @@
+package swing;
+
+import java.util.ArrayList;
+
+public class Ddd {
+	
+	public static void cal () {
+		
+	ArrayList <Integer> tree = new ArrayList <Integer>();
+		
+	for(int i = 1 ; i<10 ; i++) {
+		
+		int x = i*3;
+		if(x<10) {
+			tree.add(x);
+		}
+		for(int t : tree) {
+			System.out.println(t);
+		}
+	}
+	}
+	public static void main(String[] args) {
+		cal();
+	}
+
+}

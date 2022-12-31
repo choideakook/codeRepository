@@ -1,0 +1,199 @@
+package swing;
+
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+public class Main {
+
+	private JFrame frame;
+	private JTextField txt_ID;
+	private JPasswordField txt_PW;
+	private JTextField id;
+	private JTextField pw;
+	private JTextField name;
+	private JTextField age;
+	private JTextField mail;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Main window = new Main();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Main() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		
+		frame = new JFrame();
+		frame.getContentPane().setLayout(null);
+		
+		ImageIcon icon = new ImageIcon("./image/bk.jpg");
+		Image img = icon.getImage();
+		Image cImg = img.getScaledInstance(746, 424, Image.SCALE_SMOOTH);
+		ImageIcon cIcon = new ImageIcon(cImg);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel p2 = new JPanel();
+		p2.setBounds(220, 37, 287, 299);
+		frame.getContentPane().add(p2);
+		p2.setVisible(false);
+		p2.setLayout(null);
+		
+		JLabel la_signup = new JLabel("New Sign up");
+		la_signup.setHorizontalAlignment(SwingConstants.CENTER);
+		la_signup.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		la_signup.setBounds(30, 6, 233, 35);
+		p2.add(la_signup);
+		
+		JLabel up_id = new JLabel("ID : ");
+		up_id.setHorizontalAlignment(SwingConstants.RIGHT);
+		up_id.setBounds(6, 66, 61, 16);
+		p2.add(up_id);
+		
+		JLabel up_pw = new JLabel("PW : ");
+		up_pw.setHorizontalAlignment(SwingConstants.RIGHT);
+		up_pw.setBounds(6, 87, 61, 16);
+		p2.add(up_pw);
+		
+		JLabel up_name = new JLabel("Name : ");
+		up_name.setHorizontalAlignment(SwingConstants.RIGHT);
+		up_name.setBounds(6, 133, 61, 16);
+		p2.add(up_name);
+		
+		JLabel up_age = new JLabel("Age : ");
+		up_age.setHorizontalAlignment(SwingConstants.RIGHT);
+		up_age.setBounds(6, 161, 61, 16);
+		p2.add(up_age);
+		
+		JLabel up_mail = new JLabel("E-mail : ");
+		up_mail.setHorizontalAlignment(SwingConstants.RIGHT);
+		up_mail.setBounds(6, 189, 61, 16);
+		p2.add(up_mail);
+		
+		id = new JTextField();
+		id.setBounds(79, 61, 130, 26);
+		p2.add(id);
+		id.setColumns(10);
+		
+		pw = new JTextField();
+		pw.setColumns(10);
+		pw.setBounds(79, 82, 130, 26);
+		p2.add(pw);
+		
+		name = new JTextField();
+		name.setColumns(10);
+		name.setBounds(79, 128, 130, 26);
+		p2.add(name);
+		
+		age = new JTextField();
+		age.setColumns(10);
+		age.setBounds(79, 156, 130, 26);
+		p2.add(age);
+		
+		mail = new JTextField();
+		mail.setColumns(10);
+		mail.setBounds(79, 184, 130, 26);
+		p2.add(mail);
+		
+		JButton btn_sumit = new JButton("Sumit");
+		btn_sumit.setBounds(92, 241, 117, 29);
+		p2.add(btn_sumit);
+		
+		JPanel p1 = new JPanel();
+		
+		
+		p1.setBounds(462, 187, 252, 165);
+		frame.getContentPane().add(p1);
+		p1.setLayout(null);
+		
+		JButton btn_login = new JButton("Log in");
+		btn_login.setBounds(129, 130, 117, 29);
+		p1.add(btn_login);
+		
+		txt_ID = new JTextField();
+		txt_ID.setBounds(65, 50, 168, 26);
+		p1.add(txt_ID);
+		txt_ID.setColumns(10);
+		
+		txt_PW = new JPasswordField();
+		txt_PW.setBounds(65, 80, 168, 26);
+		p1.add(txt_PW);
+		
+		JLabel lb_ID = new JLabel("ID : ");
+		lb_ID.setHorizontalAlignment(SwingConstants.RIGHT);
+		lb_ID.setBounds(6, 55, 47, 16);
+		p1.add(lb_ID);
+		
+		JLabel lb_PW = new JLabel("PW : ");
+		lb_PW.setHorizontalAlignment(SwingConstants.RIGHT);
+		lb_PW.setBounds(6, 85, 47, 16);
+		p1.add(lb_PW);
+		
+		JButton btn_Signin = new JButton("Sign in");
+		btn_Signin.setBounds(19, 130, 117, 29);
+		p1.add(btn_Signin);
+		
+		JLabel la_title = new JLabel("Hello World");
+		la_title.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		la_title.setHorizontalAlignment(SwingConstants.CENTER);
+		la_title.setBounds(40, 6, 188, 29);
+		p1.add(la_title);
+		JLabel back = new JLabel (cIcon);
+		back.setBounds(0, 0, 746, 396);
+		frame.getContentPane().add(back);
+		
+		frame.setResizable(false);
+		frame.setSize(746, 424);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		btn_Signin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				p2.setVisible(true);
+			}
+		});
+		btn_sumit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String t_id = id.getText();
+				String t_pw = pw.getText();
+				String t_name = name.getText();
+				String t_age = age.getText();
+				String t_mail = mail.getText();
+				Connector.createCustomer(t_id, t_pw, t_name, t_age, t_mail);
+				
+				JOptionPane.showMessageDialog(null, "Your data has been updated!");
+				p2.setVisible(false);
+			}
+		});
+	}
+}

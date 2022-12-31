@@ -1,0 +1,69 @@
+package com.test;
+
+
+public class Test1 {
+
+	public static void main(String[] args) {
+		
+		int []numbers = {7, 0, 8, 2, 8, 3, 1, 5, 7, 6, 2};
+		String [] answer = new String [numbers.length];
+		String hand = "left";
+		
+		//-----------------------------------------//
+		
+		int [][] nb = {
+				{1, 4, 7, 11},
+				{2, 5, 8, 0},
+				{3, 6, 9, 12},
+				};
+		int []h1 = {0,3,0,0}; //left
+		int []h2 = {2,3,0,0}; //right
+		String hand2 = "";
+		if (hand == "right") {
+			hand = "R"; hand2 = "L";
+			h1[0] =2; h2[0] =0;
+		}else {hand ="L"; hand2= "R";}
+		
+		for (int i = 0; i<numbers.length ; i++) {
+			h1[3]= 0;
+			for (int j = 0; j<3 ; j++) {
+				for (int k = 0 ; k<4 ; k++) {
+					if (numbers[i] == nb[0][k] && numbers[i] == nb[j][k]) {
+						if (hand.equals("L")) {
+							answer[i] = "L";
+							h1[0] =j ; h1[1] = k; h1[3]= 11;
+						}else {
+							answer[i] = "L";
+							h2[0] =j ; h2[1] = k; h1[3]= 11;
+						}break;
+					}else if(numbers[i] == nb[2][k] && numbers[i] == nb[j][k]) {
+						if (hand.equals("R")) {
+							answer[i] = "R";
+							h1[0] =j ; h1[1] = k; h1[3]= 11;
+						}else {
+							answer[i] = "R";
+							h2[0] =j ; h2[1] = k; h1[3]= 11;
+						}break;
+					}
+					else if (numbers[i] == nb[1][k] && numbers[i] == nb[j][k]) {
+						h1[2] = Math.abs(h1[0]-j); h1[3] = Math.abs(h1[1]-k);
+						h2[2] = Math.abs(h2[0]-j); h2[3] = Math.abs(h2[1]-k);
+						if(h1[2]+h1[3] <= h2[2]+h2[3]) {
+							answer[i] = hand;
+							h1[0] =j ; h1[1] = k; h1[3]= 11;
+						}else {
+							answer[i] = hand2;
+							h2[0] =j ; h2[1] = k; h1[3]= 11;
+						}break;
+					}
+				}
+			if(h1[3] == 11) break;}
+		}
+//		System.out.print(answer);
+		for (String i : answer) {
+	    System.out.print(i);
+		}
+	    
+		}
+	}
+	    

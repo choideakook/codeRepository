@@ -1,0 +1,29 @@
+package login;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Test  {
+	public static void main(String[] args) {
+		JFrame fr = new JFrame ();
+		
+		JPanel p1 = new JPanel();
+		p1.setBackground(Color.LIGHT_GRAY);
+		p1.setLayout(new BorderLayout());
+		fr.add(p1);
+		
+			fr.setSize(600, 500);
+		fr.setLocationRelativeTo(null);
+		fr.setResizable(false);
+		fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fr.setVisible(true);
+	}
+}

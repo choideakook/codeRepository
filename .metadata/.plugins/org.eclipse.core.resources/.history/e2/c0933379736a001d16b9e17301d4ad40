@@ -1,0 +1,40 @@
+package login;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Test  {
+	public static void main(String[] args) {
+		JFrame fr = new JFrame ();
+		
+		JPanel p1 = new JPanel();
+		p1.setBackground(Color.LIGHT_GRAY);
+		p1.setLayout(new BorderLayout());
+		fr.add(p1);
+		
+		JLabel title = new JLabel ("Hello World");
+		title.setVisible(false);
+		p1.add(title, BorderLayout.NORTH);
+		JCheckBox input = new JCheckBox("text input");
+		p1.add(input, BorderLayout.WEST);
+		JCheckBox back = new JCheckBox("night mode");
+		p1.add(back, BorderLayout.WEST);
+//		JCheckBox show = new JCheckBox("show title");
+//		p1.add(show, BorderLayout.WEST);
+		JTextField text = new JTextField ();
+		p1.add(text, BorderLayout.CENTER);
+		
+		
+		fr.setSize(600, 500);
+		fr.setLocationRelativeTo(null);
+//		fr.setResizable(false);
+		fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fr.setVisible(true);
+	}
+}

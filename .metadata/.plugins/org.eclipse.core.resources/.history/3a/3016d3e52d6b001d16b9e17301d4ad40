@@ -1,0 +1,55 @@
+package swing;
+
+import java.awt.EventQueue;
+import java.awt.Image;
+
+import javax.swing.*;
+
+public class Main {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Main window = new Main();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Main() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		
+		frame = new JFrame();
+		
+		ImageIcon icon = new ImageIcon("./image/bk.jpg");
+		Image img = icon.getImage();
+		Image cImg = img.getScaledInstance(746, 424, Image.SCALE_SMOOTH);
+		ImageIcon cIcon = new ImageIcon(cImg);
+		JLabel back = new JLabel (cIcon);
+		frame.add(back);
+		
+//		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.setSize(746, 424);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+}

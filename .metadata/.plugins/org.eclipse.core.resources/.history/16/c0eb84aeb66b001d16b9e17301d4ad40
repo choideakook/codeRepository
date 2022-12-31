@@ -1,0 +1,63 @@
+package swing;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+public class Connector {
+	public static Connection getConnection () {
+		try {
+			String driver = "com.mysql.jdbc.Driver";
+			String url = "jdbc:mysql://localhost:3306/study";
+			String id = "root";
+			String pw = "root";
+			Class.forName(driver);
+			Connection con = DriverManager.getConnection(url,id,pw);
+			System.out.println("Connection Success");
+			return con;
+			// 오류시 작동됨
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	public static void inputUser(String user, String pw, String name, String age, String mail ){
+		try{
+			Connection con = getConnection();
+			PreparedStatement insert = con.prepareStatement(""
+					+ "INSERT INTO users"
+					+ "(user, pw, name, age, mail) "
+					+ "VALUE "
+					+ "('"+user+"','"+pw+"','"+name+"','"+age+"','"+mail+"')");
+			insert.executeUpdate();
+			System.out.println("The data has been saved!");
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
+	public int login (String user, String pw) {
+		String SQL = "SELECT pw FROM WHERE user = ?";
+		try {
+			Connection con = getConnection();
+			PreparedStatement pstmt = con.prepareStatement(SQL);
+			pstmt.setString(1, user);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).equals(pw)) {
+					return 1 ; // 로그인 성공
+				}else {
+					return 0; // 비밀번호 불일치
+				}
+			}else {
+				return -1;	// 아이디 없음
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -2;		// 데이터베이스 오류
+	}
+}
+

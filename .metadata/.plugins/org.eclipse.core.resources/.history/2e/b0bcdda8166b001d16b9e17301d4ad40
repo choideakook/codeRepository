@@ -1,0 +1,23 @@
+package login;
+
+import java.awt.Color;
+import java.awt.Window;
+
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+
+public class Modal extends JDialog {
+		// 스윙과 연결
+	public Modal (Window parent) {
+		super(parent, "Modal Practice", ModalityType.APPLICATION_MODAL);
+		setLayout (null);
+		
+		JLabel lb = new JLabel("Enter Text");
+		setBounds(10,10,100,50);
+		add(lb);
+		
+		setSize (250,350);
+//		setBackground(Color.WHITE);
+//		setLocationRelativeTo(null);
+	}
+}

@@ -1,0 +1,11 @@
+package swing;
+
+public class Ddd {
+
+	public static void main(String[] args) {
+		Connector con = new Connector();
+		System.out.println(con.login("shdrnrhd112", "gozldwmf1"));
+		
+	}
+
+}

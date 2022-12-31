@@ -1,0 +1,29 @@
+package swing;
+
+import java.util.ArrayList;
+
+public class Ddd {
+	
+	
+	public int cal (int x) {
+		
+		ArrayList <Integer> num = new ArrayList <Integer>();
+		
+		for (int i = 1 ; i<10 ; i++) {
+			int mul = i* x;
+			if(mul < 10) {
+				num.add(mul);
+			}
+		}
+		int sum =0;
+		for(int i : num) {
+			sum += i;
+		}
+		return sum;
+	}
+	public static void main(String[] args) {
+		Ddd n3 = new Ddd ();
+		Ddd n5 = new Ddd ();
+		System.out.println(n3.cal(3) + n5.cal(5));
+	}
+}

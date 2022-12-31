@@ -1,0 +1,35 @@
+package swing;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Ddd {
+	
+	public static void array (ArrayList <Integer> re) {
+		
+		int temp;
+		for (int i=0;i<re.size();i++) {
+			for (int j = 0 ; j<re.size() ; j++) {
+				if (re.get(i)<re.get(j)) {
+					temp = re.get(i);
+					re.set(i, re.get(j));
+					re.set(j, temp);
+				}
+			}
+		}
+		System.out.println(re);
+	}
+	
+	public static void main(String[] args) {
+		
+		Random rm = new Random ();
+		ArrayList <Integer> list = new ArrayList <>();
+		
+		for (int i= 0 ; i<10;i++) {
+			list.add(rm.nextInt(10));
+		}
+		System.out.println(list);
+		array(list);
+    }
+	
+}

@@ -1,0 +1,70 @@
+package login;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+public class Customer {
+	public static Connection getConnection () {
+		try {
+			String driver = "com.mysql.jdbc.Driver";
+			String url = "jdbc:mysql://localhost:3306/study";
+			String id = "root";
+			String pw = "root";
+			Class.forName(driver);
+			Connection con = DriverManager.getConnection(url,id,pw);
+			System.out.println("Connection Success");
+			return con;
+			// 오류시 작동됨
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	public static void createCustomer(String name, String phone, String gender, String age, String note ){
+		try{
+			Connection con = getConnection();
+			PreparedStatement insert = con.prepareStatement(""
+					+ "INSERT INTO customer"
+					+ "(name, phone, gender, age, note) "
+					+ "VALUE "
+					+ "('"+name+"','"+phone+"','"+gender+"','"+age+"','"+note+"')");
+			insert.executeUpdate();
+			System.out.println("The data has been saved!");
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
+	public static String [][] getCustomers(){
+		try {
+			Connection con = getConnection();
+				// mysql에 명령 → 변수 statement에 저장
+			PreparedStatement statement = con.prepareStatement(""
+					+ "Select name, phone, gender, age, not from customer");
+				// statement 결과값을 변수 results 에 저장
+			ResultSet results = statement.executeQuery();
+			
+				// Array list 생성
+			ArrayList<String []> list = new ArrayList<String []>();
+				// result 의 결과값을 data 가 없을때까지 반복해서 배열 list 에 add
+			while (results.next()) {
+				list.add(new String [] {
+						results.getString("name"),
+						results.getString("age"),
+						results.getString("gender"),
+						results.getString("age"),
+						results.getString("note")
+				});
+			}
+			System.out.println("the data has been fetched!");
+			String [][] arr = new String [list.size()][5];
+			return list.toArray(arr);
+			
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+}

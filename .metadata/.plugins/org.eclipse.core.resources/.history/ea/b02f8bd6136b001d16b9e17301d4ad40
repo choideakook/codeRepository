@@ -1,0 +1,35 @@
+package login;
+
+import java.awt.BorderLayout;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+
+public class Test  {
+	public static void main(String[] args) {
+		JFrame fr = new JFrame ();
+		
+		JPanel p1 = new JPanel();
+		fr.add(p1);
+		
+		JRadioButton kor = new JRadioButton("Korean");
+		JRadioButton eng = new JRadioButton("English");
+		JRadioButton jap = new JRadioButton("Japan");
+		ButtonGroup group = new ButtonGroup();
+		group.add(kor);
+		group.add(eng);
+		group.add(jap);
+		
+		p1.add(jap);
+		p1.add(eng);
+		p1.add(kor);
+		
+		fr.setSize(300, 400);
+		fr.setLocationRelativeTo(null);
+		fr.setResizable(false);
+		fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fr.setVisible(true);
+	}
+}

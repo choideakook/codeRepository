@@ -1,0 +1,13 @@
+package login;
+
+import java.awt.Window;
+
+import javax.swing.JDialog;
+
+public class Modal extends JDialog {
+		// 스윙과 연결
+	public Modal (Window parent) {
+		super(parent, "Modal Practice", ModalityType.APPLICATION_MODAL);
+		
+	}
+}

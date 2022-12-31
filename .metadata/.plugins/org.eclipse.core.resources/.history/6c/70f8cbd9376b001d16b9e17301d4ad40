@@ -1,0 +1,38 @@
+package swing;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+public class Connector {
+	public static Connection getConnection () {
+		try {
+			String driver = "com.mysql.jdbc.Driver";
+			String url = "jdbc:mysql://localhost:3306/study";
+			String id = "root";
+			String pw = "root";
+			Class.forName(driver);
+			Connection con = DriverManager.getConnection(url,id,pw);
+			System.out.println("Connection Success");
+			return con;
+			// 오류시 작동됨
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+	public static void createCustomer(String user, String pw, String name, String age, String mail ){
+		try{
+			Connection con = getConnection();
+			PreparedStatement insert = con.prepareStatement(""
+					+ "INSERT INTO customer"
+					+ "(user, pw, name, age, mail) "
+					+ "VALUE "
+					+ "('"+name+"','"+pw+"','"+name+"','"+age+"','"+mail+"')");
+			insert.executeUpdate();
+			System.out.println("The data has been saved!");
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
+}

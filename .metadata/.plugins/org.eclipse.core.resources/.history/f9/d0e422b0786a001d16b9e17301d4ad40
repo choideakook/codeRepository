@@ -1,0 +1,144 @@
+package login;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+
+public class Test1 {
+
+	private JFrame f1;
+	private final JPanel p1 = new JPanel();
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Test1 window = new Test1();
+					window.f1.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Test1() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		f1 = new JFrame();
+		
+		f1.setSize(300, 400);
+		f1.setLocationRelativeTo(null);
+		f1.setResizable(false);
+		f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f1.getContentPane().setLayout(null);
+		p1.setBounds(0, 0, 300, 372);
+		f1.getContentPane().add(p1);
+		p1.setLayout(null);
+		
+		JLabel title = new JLabel("Hello World");
+		title.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		title.setHorizontalAlignment(SwingConstants.CENTER);
+		title.setBounds(18, 16, 263, 52);
+		p1.add(title);
+		
+		JCheckBox show = new JCheckBox("Show title");
+		show.setBounds(28, 73, 128, 23);
+		p1.add(show);
+		
+		JCheckBox back = new JCheckBox("Change background");
+		back.setBounds(28, 107, 179, 23);
+		p1.add(back);
+		
+		JCheckBox input = new JCheckBox("Input text");
+		input.setBounds(28, 142, 128, 23);
+		p1.add(input);
+		
+		JTextArea text = new JTextArea();
+		text.setBounds(28, 177, 251, 126);
+		text.setEnabled(false);
+		text.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+		p1.add(text);
+		
+		JButton clear = new JButton("Clear text");
+		clear.setBounds(26, 315, 117, 29);
+		p1.add(clear);
+		
+		JButton fix = new JButton("Fix title");
+		fix.setBounds(164, 315, 117, 29);
+		p1.add(fix);
+		
+		input.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				text.setEnabled(input.isSelected());
+			}
+		});
+		show.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boolean on = back.isSelected();
+				if(on) {
+					title.setVisible(false);
+					title.setForeground(Color.RED);
+				}else {
+					title.setVisible(true);
+					title.setForeground(Color.BLACK);
+				}
+			}
+		});
+		back.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boolean on = back.isSelected();
+				if(on) {
+				p1.setBackground(Color.BLACK);
+				show.setForeground(Color.WHITE);
+				back.setForeground(Color.WHITE);
+				input.setForeground(Color.WHITE);
+				title.setForeground(Color.WHITE);
+				} else {
+				p1.setBackground(Color.WHITE);
+				show.setForeground(Color.BLACK);
+				back.setForeground(Color.BLACK);
+				input.setForeground(Color.BLACK);
+				title.setForeground(Color.BLACK);
+				}
+			}
+		});
+		fix.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				title.setText(text.getText());
+			}
+		});
+		clear.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				text.setText("");
+			}
+		});
+	}
+}

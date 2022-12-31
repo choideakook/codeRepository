@@ -1,0 +1,34 @@
+package login;
+
+import java.awt.Color;
+
+import javax.swing.*;
+
+public class Test  {
+	public static void main(String[] args) {
+		JFrame fr = new JFrame ();
+		
+		JPanel p1 = new JPanel();
+		p1.setBackground(Color.LIGHT_GRAY);
+		fr.add(p1);
+		
+		JLabel title = new JLabel ("Hello World");
+		title.setVisible(false);
+		p1.add(title);
+		JCheckBox input = new JCheckBox("text input");
+		p1.add(input);
+		JCheckBox back = new JCheckBox("night mode");
+		p1.add(back);
+		JCheckBox show = new JCheckBox("show title");
+		p1.add(show);
+		JTextField text = new JTextField ();
+		p1.add(text);
+		
+		
+		fr.setSize(600, 500);
+		fr.setLocationRelativeTo(null);
+		fr.setResizable(false);
+		fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		fr.setVisible(true);
+	}
+}

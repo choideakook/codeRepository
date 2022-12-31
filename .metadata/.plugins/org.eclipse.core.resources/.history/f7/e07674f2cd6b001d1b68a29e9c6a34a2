@@ -1,0 +1,23 @@
+package swing;
+
+import java.util.ArrayList;
+
+public class Ddd {
+	
+	int s3,s5;
+	
+	public Ddd (int s3,int s5) {
+		this.s3 = s3;
+		this.s5 = s5;
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		
+		Ddd i = new Ddd(3,5);
+		System.out.println(i.s3+i.s5);
+		
+	}
+
+}
