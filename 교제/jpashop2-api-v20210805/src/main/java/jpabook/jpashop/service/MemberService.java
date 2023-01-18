@@ -9,39 +9,46 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
-@Transactional (readOnly = true) // readonly true 는 DB 변경이아닌 읽기 전용이라는 의미
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    @Transactional // join 은 DB 변경이 가능하기때문에 True 를 해주면 안된다 (default = false)
+    /**
+     * 회원 가입
+     */
+    @Transactional
     public Long join(Member member) {
-        validateDuplicateMember (member);
+
+        validateDuplicateMember(member); //중복 회원 검증
         memberRepository.save(member);
         return member.getId();
     }
 
-    // 변경감지를 이용한 정보 수정
-    @Transactional
-    public void update(Long id, String name) {
-        Member member = memberRepository.findOne(id);
-        member.setName(name);
-    }
     private void validateDuplicateMember(Member member) {
-
         List<Member> findMembers = memberRepository.findByName(member.getName());
         if (!findMembers.isEmpty()) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
-    // 조회 기능이기때문에 Transactional 읽기 전용에 해당한다.
 
-    public List<Member> findMembers (){
+    //회원 전체 조회
+    public List<Member> findMembers() {
         return memberRepository.findAll();
     }
 
     public Member findOne(Long memberId) {
         return memberRepository.findOne(memberId);
     }
+
+    /**
+     * 회원 수정
+     */
+    @Transactional
+    public void update(Long id, String name) {
+        Member member = memberRepository.findOne(id);
+        member.setName(name);
+    }
+
 }

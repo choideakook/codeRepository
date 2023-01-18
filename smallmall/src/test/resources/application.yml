@@ -1,0 +1,6 @@
+spring:
+
+logging:
+  level:
+    # hibernate 가 남기는 모든 로그들을 디버그 모드로사용 (log 로 출력 가능해짐)
+    org.hibernate.SQL: debug

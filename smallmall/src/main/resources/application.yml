@@ -1,0 +1,22 @@
+spring:
+  # db 커넥터 세팅
+  datasource:
+    # DB url 주소입력 ; MVCC=TRUE 대용량 데이터의 접근을 빠르게 처리할 수 있음
+    url: jdbc:h2:tcp://localhost/~/smallmall
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  # jpa 세팅
+  jpa:
+    hibernate:
+      # app 실행 시점에 자동으로 table 을 만들어줌
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+    # hibernate 가 남기는 모든 로그들을 디버그 모드로사용 (log 로 출력 가능해짐)
+    org.hibernate.SQL: debug
