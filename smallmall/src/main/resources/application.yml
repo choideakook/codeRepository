@@ -11,7 +11,7 @@ spring:
   jpa:
     hibernate:
       # app 실행 시점에 자동으로 table 을 만들어줌
-      ddl-auto: create
+      ddl-auto: none
     properties:
       hibernate:
         format_sql: true

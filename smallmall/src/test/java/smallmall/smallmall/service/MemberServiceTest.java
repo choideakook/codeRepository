@@ -18,7 +18,8 @@ class MemberServiceTest {
 
     @Test
     void save_member() {
-        Member member = new Member("MemberA", new Address("010","seoul"));
+        Member member = new Member("MemberA");
+        member.setAddress("010","seoul");
 
         Long createMember = service.join(member);
 
@@ -30,8 +31,9 @@ class MemberServiceTest {
 
     @Test
     void duplicate_name() {
-        Member member1 = new Member("MemberA", new Address("010","seoul"));
-        Member member2 = new Member("MemberA", new Address("010","seoul"));
+        Member member1 = new Member("MemberA");
+        Member member2 = new Member("MemberA");
+
         Long createMember = service.join(member1);
 
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> service.join(member2));

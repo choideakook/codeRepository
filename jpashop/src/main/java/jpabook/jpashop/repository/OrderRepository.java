@@ -62,7 +62,7 @@ public class OrderRepository {
     }
 
     // 페이징 기능 추가
-    public List<Ordeㅌㅌr> findAllWithMemberDelivery(int offset, int limit) {
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
         return em.createQuery(
                 "select o from Order o" +
                         " join fetch o.member m" +

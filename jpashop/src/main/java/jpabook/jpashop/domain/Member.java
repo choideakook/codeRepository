@@ -29,4 +29,5 @@ public class Member {
     // Order Class 의 member 필드에 의해시 의존관계의 거울이됨
     @OneToMany (mappedBy = "member") // non Owner 의 표시 (읽기만 가능)
     private List<Order> orders = new ArrayList<>();
+
 }

@@ -26,6 +26,14 @@ public abstract class Item {
 
     private int stockQuantity;
 
+    //== test logic ==//
+    public void createItem(String name, int price, int stockQuantity) {
+        this.name = name;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+    }
+
+
     //== business logic ==//
 
     // 재고 추가
@@ -43,7 +51,8 @@ public abstract class Item {
     }
 
     // name 수정
-    public void setName(String name) {
+    public void setName(String name, int stockQuantity) {
         this.name = name;
+        this.stockQuantity = stockQuantity;
     }
 }

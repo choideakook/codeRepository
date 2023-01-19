@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import smallmall.smallmall.domain.Delivery;
 import smallmall.smallmall.domain.Member;
+import smallmall.smallmall.domain.Order;
 import smallmall.smallmall.domain.OrderItem;
 import smallmall.smallmall.domain.item.Item;
 import smallmall.smallmall.repository.ItemRepository;
@@ -29,9 +30,28 @@ public class OrderService {
 
         // 배송정보 생성
         Delivery delivery = new Delivery();
+        delivery.setAddress(member.getAddress());
 
+        // 주문 상품 생성
+        OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
 
         // 주문 생성
-        OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
+        Order order = Order.createOrder(member, delivery, orderItem);
+
+        // 주문 저장
+        orderRepository.save(order);
+
+        return order.getId();
+    }
+
+    // 주문 취소
+    public void cancelOrder(Long id) {
+        Order order = orderRepository.findOne(id);
+        order.cancelOrder();
+    }
+
+    // 주문 조회
+    public Order findOne(Long id) {
+        return orderRepository.findOne(id);
     }
 }

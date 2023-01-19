@@ -3,6 +3,7 @@ package smallmall.smallmall.repository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import smallmall.smallmall.domain.item.Item;
+import smallmall.smallmall.domain.item.Jelly;
 
 import javax.persistence.EntityManager;
 import java.util.List;

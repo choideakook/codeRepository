@@ -1,13 +1,15 @@
 package smallmall.smallmall.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
+@Getter @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Member {
 
     @Id @GeneratedValue
@@ -22,9 +24,15 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
-    //== test logic ==//
-    public Member(String name, Address address) {
+    //== set Member logic ==//
+    public Member(String name) {
         this.name = name;
-        this.address = address;
+    }
+    public void updateName (String name) {
+        this.name = name;
+    }
+
+    public void setAddress(String phone, String myAddress) {
+        this.address = new Address(phone, myAddress);
     }
 }

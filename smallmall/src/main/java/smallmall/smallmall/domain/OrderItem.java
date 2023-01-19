@@ -52,6 +52,7 @@ public class OrderItem {
 
     //== 조회 로직 ==//
 
+    // 주문 총액
     public int getTotalPrice() {
         return getOrderPrice() * getCount();
     }
