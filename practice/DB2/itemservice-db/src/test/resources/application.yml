@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: test
+
+# My Batis
+mybatis:
+  type-aliases-package: hello.itemservice.domain
+  # db 의 언더스코어 문법을 java 의 낙타 문법으로 번역해줌 (기본값이 false 이다.)
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    type.descriptor.sql.BasicBinder: TRACE

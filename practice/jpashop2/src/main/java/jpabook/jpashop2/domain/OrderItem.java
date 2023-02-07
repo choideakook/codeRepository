@@ -1,7 +1,9 @@
 package jpabook.jpashop2.domain;
 
 import jpabook.jpashop2.domain.item.Item;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +13,7 @@ import static javax.persistence.FetchType.LAZY;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderItem {
 
     @Id
@@ -32,7 +35,7 @@ public class OrderItem {
     //== 생성 method ==//
 
     // buying
-    public OrderItem createOrderItem(Item item,int price, int count) {
+    public static OrderItem createOrderItem(Item item,int price, int count) {
         OrderItem orderItem = new OrderItem();
         orderItem.setItem(item);
         item.removeStock(count);

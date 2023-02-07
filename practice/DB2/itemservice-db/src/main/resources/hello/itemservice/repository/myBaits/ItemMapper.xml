@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- xml 시작  namespace 와 interface 디렉토리를 맞춰주어야 함 -->
+<mapper namespace="hello.itemservice.repository.myBaits.ItemMapper">
+
+    <!-- save -->
+    <!-- PK 는 useGeneratedKeys 와 keyProperty 를 설정해줌 -->
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        insert into item (item_name, price, quantity)
+        <!-- interface method 의 param 값인 item 의 필드값을 알아서 get 해 매핑함 -->
+        values (#{itemName}, #{price}, #{quantity})
+    </insert>
+
+    <!-- update -->
+    <update id="update">
+        update item
+        set item_name=#{updateParam.itemName}, <!-- dto 에서 필드값을 사용함 -->
+        price=#{updateParam.price},
+        quantity=#{updateParam.quantity}
+        where id = #{id}
+    </update>
+
+    <!-- findById -->
+    <!-- resultType 에 entity 인 item 의 디렉토리 를 적어줘야 하지만 -->
+    <!-- 환경설정에서 type-aliases-package: 를 설정해줘서 간단하게 Class 명만 적어도 된다 -->
+    <select id="findById" resultType="Item">
+        select id, item_name, price, quantity
+        from item
+        where id = #{id}
+    </select>
+
+    <!-- findAll -->
+    <select id="findAll" resultType="Item">
+        select id, item_name, price, quantity
+        from item
+        <!-- 동적 쿼리 -->
+        <where>
+            <if test="itemName != null and itemName != ''">
+                and item_name like concat('%',#{itemName},'%')
+            </if>
+            <if test="maxPrice != null">
+                and price &lt;= #{maxPrice}
+            </if>
+        </where>
+    </select>
+
+</mapper>

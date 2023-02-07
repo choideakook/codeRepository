@@ -1,4 +1,4 @@
-package hello.jdbc;
+package hello.jdbc.excepiton;
 
 import org.junit.jupiter.api.Test;
 
