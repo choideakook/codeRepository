@@ -36,6 +36,7 @@ public class Main {
                 }
 
                 // 소수를 판별하기 위한 로직
+                // checker true 로 초기화
                 boolean checker = true;
                 for (int j = 2; j < i; j++) {
 
