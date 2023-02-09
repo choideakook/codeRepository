@@ -39,6 +39,4 @@ public class TodoService {
         repository.delete(findTodo);
         return id;
     }
-
-
 }
