@@ -2,6 +2,7 @@ package character;
 
 import weapon.무기;
 
+// 캐릭터의 필수 정보를 갖고있는 추상 객체입니다.
 public abstract class 캐릭터 {
 
     public abstract String 직업();

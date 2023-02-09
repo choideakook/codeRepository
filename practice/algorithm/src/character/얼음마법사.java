@@ -2,6 +2,8 @@ package character;
 
 import weapon.얼음지팡이;
 
+// 얼음마법사의 고유한 정보를 갖고있는 객체입니다.
+// 기록되지 않은 정보는 마법사와 동일합니다.
 public class 얼음마법사 extends 마법사 {
 
     @Override

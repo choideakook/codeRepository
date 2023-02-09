@@ -2,6 +2,7 @@ package character;
 
 import weapon.칼;
 
+// 전사의 고유한 정보를 갖고있는 객체입니다.
 public class 전사 extends 캐릭터 {
 
     @Override

@@ -2,6 +2,7 @@ package character;
 
 import weapon.불지팡이;
 
+// 마법사의 고유한 정보를 갖고있는 객체입니다.
 public class 마법사 extends 캐릭터{
 
     @Override
