@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 // JPA 기술과 H2 DB 를 사용해 과제를 해결했습니다.
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Todo {
 
     @Id @GeneratedValue
