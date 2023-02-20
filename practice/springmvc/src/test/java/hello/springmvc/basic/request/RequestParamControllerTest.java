@@ -12,9 +12,9 @@ class RequestParamControllerTest {
 
     @Test
     void name() {
-        String today = "2020.01.01"; // 오늘 날짜 "YYYY.MM.DD"
-        String[] terms = {"Z 3", "D 5"}; // 약관의 유효기간 "약관종류 유효기간" (최대 20개)
-        String[] privacies = {"2019.01.01 D", "2019.11.15 Z", "2019.08.02 D", "2019.07.01 D", "2018.12.28 Z"}; // 수집된 개인정보 "날짜 약관종류" (최대 100개)
+        String today = "2022.05.19"; // 오늘 날짜 "YYYY.MM.DD"
+        String[] terms = {"A 6", "B 12", "C 3"}; // 약관의 유효기간 "약관종류 유효기간" (최대 20개)
+        String[] privacies = {"2021.05.02 A", "2021.07.01 B", "2022.02.19 C", "2022.02.20 C"}; // 수집된 개인정보 "날짜 약관종류" (최대 100개)
         ArrayList<Integer> answer = new ArrayList<>();
 
         //-------------------------------//
@@ -30,29 +30,31 @@ class RequestParamControllerTest {
         }
 
         for (int i = 0; i < privacies.length; i++) {
-            String privacy = privacies[i].replaceAll(".01 ", ".29 ");
-            String substring = privacy.substring(privacy.length() - 1);
-            String substring1 = privacy.substring(0, 10);
-            LocalDate parsePrivacyDate = LocalDate.parse(substring1, formatter);
+            int yyyy = Integer.parseInt(privacies[i].substring(0, 4));
+            int mm = Integer.parseInt(privacies[i].substring(5, 7));
+            int dd = Integer.parseInt(privacies[i].substring(8, 10));
+            String term = privacies[i].substring(privacies[i].length() - 1);
 
+            if ((dd - 1) == 0) dd = 28;
+            else dd --;
 
-            LocalDate localDate = parsePrivacyDate
-                    .plusMonths(parseTerm.get(substring))
-                    .minusDays(1);
+            mm = mm + parseTerm.get(term);
+            while (mm > 12) {
+                mm -= 12;
+                yyyy ++;
+            }
 
-            boolean checker = parseToday.isAfter(localDate);
+            String termDay = yyyy + "." + String.format("%02d", mm) + "." + String.format("%02d", dd);
+            LocalDate parseTermDay = LocalDate.parse(termDay, formatter);
+
+            boolean checker = parseToday.isAfter(parseTermDay);
 
             if (checker) {
                 answer.add(i + 1);
             }
         }
 
-//        int[] answer1 = new int[answer.size()];
-//
-//        for (int i = 0; i < answer.size(); i++) {
-//            answer1[i] = answer.get(i);
-//        }
-
+//        return answer.stream().mapToInt(i -> i).toArray();
         for (Integer integer : answer) {
             System.out.println(integer);
         }
@@ -60,12 +62,8 @@ class RequestParamControllerTest {
 
     @Test
     void name1() {
-        String today = "2027.02.29";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
-        LocalDate parseToday = LocalDate.parse(today, formatter);
-
-        LocalDate localDate = parseToday.plusMonths(0);
-        System.out.println("localDate = " + localDate);
+        int a = 40;
+        System.out.println( a%12);
     }
 
     @Test
@@ -74,5 +72,18 @@ class RequestParamControllerTest {
 
         String value = day.substring(day.lastIndexOf(" ") + 1);
         System.out.println("value =" + value);
+    }
+
+    @Test
+    void name3() {
+        LocalDate today = LocalDate.of(2023, 02, 20);
+
+        LocalDate d_day = LocalDate.of(2023, 02, 20);
+        LocalDate yesterday = LocalDate.of(2023, 02, 19);
+        LocalDate tomorrow = LocalDate.of(2023, 02, 21);
+
+        System.out.println(today.isAfter(d_day));
+        System.out.println(today.isAfter(yesterday));
+        System.out.println(today.isAfter(tomorrow));
     }
 }
